@@ -1,7 +1,3 @@
-//
-// Created by visan on 18-Apr-20.
-//
-
 #include "coada.h"
 #include "vector.h"
 #include "complex.h"
@@ -47,7 +43,11 @@ coada & coada::pop()
         this->vec=v;
         return *this;
     }
-    return *this;
+    else {
+        std::cout<<"coada vida ";
+        return *this;
+    }
+
 }
 std::istream &operator>>(std::istream & in, coada &c)
 {

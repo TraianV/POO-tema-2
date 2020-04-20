@@ -1,7 +1,3 @@
-//
-// Created by visan on 18-Apr-20.
-//
-
 #include "vector.h"
 #include "complex.h"
 #include "stiva.h"

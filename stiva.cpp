@@ -1,7 +1,3 @@
-//
-// Created by visan on 18-Apr-20.
-//
-
 #include "vector.h"
 #include "complex.h"
 #include "stiva.h"
@@ -48,7 +44,10 @@ stiva & stiva::pop()
         return *this;
     }
     else
+    {
+        std::cout<<"stiva vida ";
         return *this;
+    }
 }
 
 std::istream &operator>>(std::istream & in,stiva &s)

@@ -1,7 +1,3 @@
-//
-// Created by visan on 18-Apr-20.
-//
-
 #ifndef UNTITLED_VECTOR_H
 #define UNTITLED_VECTOR_H
 #include "complex.h"
@@ -31,4 +27,4 @@ public:
 
 
 
-#endif //UNTITLED_VECTOR_H
+#endif

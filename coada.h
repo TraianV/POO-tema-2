@@ -1,7 +1,3 @@
-//
-// Created by visan on 18-Apr-20.
-//
-
 #ifndef UNTITLED_COADA_H
 #define UNTITLED_COADA_H
 #include "vector.h"

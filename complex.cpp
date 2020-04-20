@@ -1,7 +1,3 @@
-//
-// Created by visan on 18-Apr-20.
-//
-
 #include "vector.h"
 #include "complex.h"
 #include<fstream>
@@ -45,10 +41,18 @@ std::istream & operator >> (std::istream &in, complex &r)
 }
 std::ostream & operator << (std::ostream &out,const complex &r)
 {
-    out<<r.re;
-    if(r.im>0)
-        out<<'+'<<r.im<<'i';
-    else if(r.im<0)
-        out<<r.im<<'i';
+    if(r.re!=0)
+        out<<r.re;
+    if(r.im==1)
+        out<<"+i";
+    else
+        if(r.im==-1)
+            out<<"-i";
+        else
+            if(r.im>0)
+                out<<'+'<<r.im<<'i';
+            else
+                if(r.im<0)
+                    out<<r.im<<'i';
     return out;
 }

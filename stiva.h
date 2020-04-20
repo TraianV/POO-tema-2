@@ -1,7 +1,3 @@
-//
-// Created by visan on 18-Apr-20.
-//
-
 #ifndef UNTITLED_STIVA_H
 #define UNTITLED_STIVA_H
 #include "vector.h"
@@ -26,4 +22,4 @@ public:
 
 
 
-#endif //UNTITLED_STIVA_H
+#endif

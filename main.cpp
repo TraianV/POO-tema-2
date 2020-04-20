@@ -50,91 +50,6 @@ int main()
                     if(strstr(s,"push stiva"))
                     {
                     i=11;
-                    if(s[i]=='i')
-                    {
-                        o=0;
-                        q=1;
-                    }
-                    if(s[i]=='-')
-                    {
-                        ok1=-1;
-                        i++;
-                    }
-                    else
-                    {
-                        ok1=1;
-                    }
-                    for(;i<strlen(s)-1 &&  s[i]!='+'   &&  s[i]!='-'   &&     s[i]!='.'    &&  s[i]!='i';i++)
-                        o=o*10+s[i]-48;
-                    if(s[i]=='i')
-                        q=o;
-                    if(s[i]=='i'  &&  s[i-1]==' ')
-                        q=1;
-                    else
-                        if(s[i]=='i'    &&  s[i-1]=='-')
-                        {
-                            q=-1;
-                            i++;
-                        }
-                    if(s[i]=='.')
-                    {
-                        i++;
-                        for(;s[i]!='+'  &&  s[i]!=-'-'  &&  i<strlen(s)-1  &&  s[i]!='i';i++)
-                        {
-                            p=p*10+s[i]-48;
-                            c*=10;
-                        }
-                        while(c>1)
-                        {
-                            p/=10;
-                            c/=10;
-                        }
-                        o+=p;
-                    }
-                    o*=ok1;
-                    if(s[i]=='i')
-                    {
-                        q=o;
-                        o=0;
-                    }
-                    if(s[i]=='-'    &&  q!=-1)
-                    {
-                        ok2=-1;
-                        i++;
-                    }
-                    else
-                    {
-                        ok2=1;
-                        i++;
-                    }
-                    for(;i<strlen(s)-1  &&  s[i]!='i'   &&  s[i]!='.';i++)
-                        q=q*10+s[i]-48;
-                    if(s[i]=='i'    &&  q==0)
-                        q=1;
-                    if(s[i]=='.')
-                    {
-                        i++;
-                        for(;s[i]!=i;i++)
-                        {
-                            r=r*10+s[i]-48;
-                            d*=10;
-                        }
-                        while(d>1)
-                        {
-                            r/=10;
-                            d/=10;
-                        }
-                        q+=r;
-                    }
-                    q*=ok2;
-                    x.set_re(o);
-                    x.set_im(q);
-                    a.add(x);
-                }
-                    else
-                        if(strstr(s,"push coada"))
-                {
-                i=11;
                 if(s[i]=='i')
                 {
                     o=0;
@@ -151,7 +66,7 @@ int main()
                 }
                 for(;i<strlen(s)-1 &&  s[i]!='+'   &&  s[i]!='-'   &&     s[i]!='.'    &&  s[i]!='i';i++)
                     o=o*10+s[i]-48;
-                if(s[i]=='i')
+                if(s[i]=='i' && q!=1)
                     q=o;
                 if(s[i]=='i'  &&  s[i-1]==' ')
                     q=1;
@@ -177,7 +92,92 @@ int main()
                     o+=p;
                 }
                 o*=ok1;
+                if(s[i]=='i' && q!=1)
+                {
+                    q=o;
+                    o=0;
+                }
+                if(s[i]=='-'    &&  q!=-1)
+                {
+                    ok2=-1;
+                    i++;
+                }
+                else
+                {
+                    ok2=1;
+                    i++;
+                }
+                for(;i<strlen(s)-1  &&  s[i]!='i'   &&  s[i]!='.';i++)
+                    q=q*10+s[i]-48;
+                if(s[i]=='i'    &&  q==0)
+                    q=1;
+                if(s[i]=='.')
+                {
+                    i++;
+                    for(;s[i]!=i;i++)
+                    {
+                        r=r*10+s[i]-48;
+                        d*=10;
+                    }
+                    while(d>1)
+                    {
+                        r/=10;
+                        d/=10;
+                    }
+                    q+=r;
+                }
+                q*=ok2;
+                x.set_re(o);
+                x.set_im(q);
+                    a.add(x);
+                }
+                    else
+                        if(strstr(s,"push coada"))
+                {
+                i=11;
                 if(s[i]=='i')
+                {
+                    o=0;
+                    q=1;
+                }
+                if(s[i]=='-')
+                {
+                    ok1=-1;
+                    i++;
+                }
+                else
+                {
+                    ok1=1;
+                }
+                for(;i<strlen(s)-1 &&  s[i]!='+'   &&  s[i]!='-'   &&     s[i]!='.'    &&  s[i]!='i';i++)
+                    o=o*10+s[i]-48;
+                if(s[i]=='i' && q!=1)
+                    q=o;
+                if(s[i]=='i'  &&  s[i-1]==' ')
+                    q=1;
+                else
+                if(s[i]=='i'    &&  s[i-1]=='-')
+                {
+                    q=-1;
+                    i++;
+                }
+                if(s[i]=='.')
+                {
+                    i++;
+                    for(;s[i]!='+'  &&  s[i]!=-'-'  &&  i<strlen(s)-1  &&  s[i]!='i';i++)
+                    {
+                        p=p*10+s[i]-48;
+                        c*=10;
+                    }
+                    while(c>1)
+                    {
+                        p/=10;
+                        c/=10;
+                    }
+                    o+=p;
+                }
+                o*=ok1;
+                if(s[i]=='i' && q!=1)
                 {
                     q=o;
                     o=0;

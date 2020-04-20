@@ -1,7 +1,3 @@
-//
-// Created by visan on 18-Apr-20.
-//
-
 #ifndef UNTITLED_COMPLEX_H
 #define UNTITLED_COMPLEX_H
 #include <fstream>
@@ -27,4 +23,4 @@ public:
 
 
 
-#endif //UNTITLED_COMPLEX_H
+#endif

@@ -10,12 +10,15 @@ class coada
 public:
     friend class vector;
     friend class complex;
-    coada();
+    coada(vector vec);
     coada (const coada &c);
     ~coada();
-    coada &add(complex x);
+    coada &push(complex x);
     coada &pop();
-    vector get_v(){return this->vec;}
+    vector get_v()
+    {
+        return this->vec;
+    }
     friend std::istream & operator >>(std::istream &, coada & );
     friend std::ostream & operator <<(std::ostream &, coada & );
 };

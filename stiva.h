@@ -1,23 +1,14 @@
 #ifndef UNTITLED_STIVA_H
 #define UNTITLED_STIVA_H
 #include "vector.h"
-#include "complex.h"
+#include "complex"
 #include<iostream>
 
-class stiva
+class stiva  : protected vector
 {
-    vector vec;
 public:
-    friend class vector;
-    friend class complex;
-    stiva();
-    stiva (const stiva &s);
-    ~stiva();
-    stiva &add(complex x);
+    stiva &push(complex const &x);
     stiva &pop();
-    vector get_v(){return this->vec;}
-    friend std::istream & operator >>(std::istream &, stiva & );
-    friend std::ostream & operator <<(std::ostream &, stiva & );
 };
 
 

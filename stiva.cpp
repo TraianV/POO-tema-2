@@ -1,77 +1,38 @@
 #include "vector.h"
-#include "complex.h"
+#include "complex"
 #include "stiva.h"
-#include <fstream>
-stiva::stiva()
+stiva & stiva::push(complex const &x)
 {
-    this->vec.set_n(0);
-}
-stiva::stiva(const stiva &s)
-{
-    this->vec=s.vec;
-}
-stiva::~stiva()
-{
-    if(this->vec.get_n()>0)
-    {
-        this->vec.set_n(0);
-        this->vec.set_v();
-    }
-}
-stiva & stiva::add(complex x)
-{
-    vector v;
+    vector vec;
     int i;
-    v.set_n(this->vec.get_n()+1);
-    v.set_v(this->vec.get_n()+1);
-    for(i=0;i<this->vec.get_n();i++)
-        v.set_v(i,this->vec.get_v()[i]);
-    v.set_v(this->vec.get_n(),x);
-    this->vec=v;
+    vec.set_n(this->get_n()+1);
+    vec.set_v(this->get_n()+1);
+    for(i=0;i<this->get_n();i++)
+        vec.set_v(i,this->get_v()[i]);
+    vec.set_v(this->get_n(),x);
+    for(i=0;i<this->dim;i++)
+        this->v[i]=vec.v[i];
+    this->dim++;
     return *this;
 }
 stiva & stiva::pop()
 {
-    vector v;
+    vector vec;
     int i;
-    if(this->vec.get_n()>0)
+    if(this->dim>0)
     {
-        v.set_n(this->vec.get_n()-1);
-        v.set_v(this->vec.get_n()-1);
-        for(i=0;i<this->vec.get_n()-1;i++)
-            v.set_v(i,this->vec.get_v()[i]);
-        this->vec=v;
+        vec.set_n(this->dim-1);
+        vec.set_v(this->dim-1);
+        for(i=0; i<this->dim-1; i++)
+            vec.set_v(i,this->v[i]);
+        for(i=0; i<this->dim-1; i++)
+            this->v[i]=vec.v[i];
+        this->dim--;
         return *this;
     }
     else
     {
-        std::cout<<"stiva vida ";
+        std::cout<<"stiva vida\n";
         return *this;
     }
-}
-
-std::istream &operator>>(std::istream & in,stiva &s)
-{
-    int i;
-    complex x;
-    if(s.vec.get_n()>0)
-    {
-        s.get_v().set_v();
-    }
-    in>>i;
-    s.vec.set_n(i);
-    for(i=0;i<s.vec.get_n();i++)
-    {
-        in>>x;
-        s.add(x);
-    }
-    return in;
-}
-std::ostream & operator <<(std::ostream & out,stiva &s)
-{
-    int i;
-    if(s.get_v().get_n()>0)
-        for(i=0;i<s.get_v().get_n();i++)
-            out<<s.get_v().get_v()[i]<<' ';
-    return out;
 }

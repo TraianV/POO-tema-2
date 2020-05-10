@@ -8,15 +8,27 @@ public:
     friend class vector;
     friend class stiva;
     friend class coada;
-    complex(float ,float );
+    complex(float,float );
     complex(complex const&);
     complex();
     ~complex();
-    float get_re(){return this->re;}
-    float get_im(){return this->im;}
+    float get_re()
+    {
+        return this->re;
+    }
+    float get_im()
+    {
+        return this->im;
+    }
     complex& operator =(complex &);
-    void set_re(float x){this->re=x;}
-    void set_im(float x){this->im=x;}
+    void set_re(float x)
+    {
+        this->re=x;
+    }
+    void set_im(float x)
+    {
+        this->im=x;
+    }
     friend std::istream & operator >>(std::istream &, complex &);
     friend std::ostream & operator <<(std::ostream &, const complex &);
 };

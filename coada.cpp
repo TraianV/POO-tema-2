@@ -2,7 +2,7 @@
 #include "vector.h"
 #include "complex.h"
 #include <fstream>
-coada::coada()
+coada::coada(vector vec)
 {
     this->vec.set_n(0);
 }
@@ -15,16 +15,15 @@ coada::~coada()
     if(this->vec.get_n()>0)
     {
         this->vec.set_n(0);
-        delete []this->vec.get_v();
     }
 }
-coada & coada::add(complex x)
+coada & coada::push(complex x)
 {
     vector v;
     int i;
     v.set_n(this->vec.get_n()+1);
     v.set_v(this->vec.get_n()+1);
-    for(i=0;i<this->vec.get_n();i++)
+    for(i=0; i<this->vec.get_n(); i++)
         v.set_v(i,this->vec.get_v()[i]);
     v.set_v(this->vec.get_n(),x);
     this->vec=v;
@@ -38,13 +37,14 @@ coada & coada::pop()
     {
         v.set_n(this->vec.get_n()-1);
         v.set_v(this->vec.get_n()-1);
-        for(i=1;i<this->vec.get_n();i++)
+        for(i=1; i<this->vec.get_n(); i++)
             v.set_v(i-1,this->vec.get_v()[i]);
         this->vec=v;
         return *this;
     }
-    else {
-        std::cout<<"coada vida ";
+    else
+    {
+        std::cout<<"coada vida\n";
         return *this;
     }
 
@@ -60,18 +60,18 @@ std::istream &operator>>(std::istream & in, coada &c)
     in>>i;
     c.vec.set_n(i);
     c.vec.set_v(c.vec.get_n());
-    for(i=0;i<c.vec.get_n();i++)
+    for(i=0; i<c.vec.get_n(); i++)
     {
         in>>x;
-        c.add(x);
+        c.push(x);
     }
     return in;
 }
 std::ostream & operator <<(std::ostream & out,coada &c)
 {
     int i;
-    if(c.get_v().get_n()>0)
-        for(i=0;i<c.get_v().get_n();i++)
+    if(c.vec.get_n()>0)
+        for(i=0; i<c.get_v().get_n(); i++)
             out<<c.get_v().get_v()[i]<<' ';
     return out;
 }

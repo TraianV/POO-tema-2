@@ -13,7 +13,7 @@ complex::complex(complex const &ob)
 }
 complex::complex()=default;
 complex::~complex()=default;
-complex& complex::operator=(complex &ob)=default;
+complex& complex::operator=(complex const &ob)=default;
 std::istream & operator >> (std::istream &in, complex &r)
 {
     float x,y;

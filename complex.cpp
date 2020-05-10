@@ -11,25 +11,9 @@ complex::complex(complex const &ob)
     this->re=ob.re;
     this->im=ob.im;
 }
-complex::complex()
-{
-    this->re=0;
-    this->im=0;
-}
-
-complex::~complex()
-{
-    this->im=0;
-    this->re=0;
-}
-complex& complex::operator=(complex &ob)
-{
-    if(this->re==ob.re && this->im==ob.im)
-        return *this;
-    this->re=ob.re;
-    this->im=ob.im;
-    return *this;
-}
+complex::complex()=default;
+complex::~complex()=default;
+complex& complex::operator=(complex &ob)=default;
 std::istream & operator >> (std::istream &in, complex &r)
 {
     float x,y;
@@ -45,14 +29,11 @@ std::ostream & operator << (std::ostream &out,const complex &r)
         out<<r.re;
     if(r.im==1)
         out<<"+i";
-    else
-        if(r.im==-1)
-            out<<"-i";
-        else
-            if(r.im>0)
-                out<<'+'<<r.im<<'i';
-            else
-                if(r.im<0)
-                    out<<r.im<<'i';
+    else if(r.im==-1)
+        out<<"-i";
+    else if(r.im>0)
+        out<<'+'<<r.im<<'i';
+    else if(r.im<0)
+        out<<r.im<<'i';
     return out;
 }

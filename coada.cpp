@@ -1,45 +1,31 @@
 #include "coada.h"
-#include "vector.h"
-#include "complex.h"
-#include <fstream>
-coada::coada(vector vec)
+#include "complex"
+coada & coada::push(const complex &x)
 {
-    this->vec.set_n(0);
-}
-coada::coada (const coada &c)
-{
-    this->vec=c.vec;
-}
-coada::~coada()
-{
-    if(this->vec.get_n()>0)
-    {
-        this->vec.set_n(0);
-    }
-}
-coada & coada::push(complex x)
-{
-    vector v;
+    vector vec;
     int i;
-    v.set_n(this->vec.get_n()+1);
-    v.set_v(this->vec.get_n()+1);
-    for(i=0; i<this->vec.get_n(); i++)
-        v.set_v(i,this->vec.get_v()[i]);
-    v.set_v(this->vec.get_n(),x);
-    this->vec=v;
+    vec.set_n(this->get_n()+1);
+    vec.set_v(this->get_n()+1);
+    for(i=0;i<this->get_n();i++)
+        vec.set_v(i,this->get_v()[i]);
+    vec.set_v(this->get_n(),x);
+    for(i=0;i<this->dim;i++)
+        this->v[i]=vec.v[i];
+    this->dim++;
     return *this;
 }
 coada & coada::pop()
 {
-    vector v;
+    vector vec;
     int i;
-    if(this->vec.get_n()>0)
+    if(this->dim>0)
     {
-        v.set_n(this->vec.get_n()-1);
-        v.set_v(this->vec.get_n()-1);
-        for(i=1; i<this->vec.get_n(); i++)
-            v.set_v(i-1,this->vec.get_v()[i]);
-        this->vec=v;
+        vec.set_n(this->dim-1);
+        vec.set_v(this->dim-1);
+        for(i=1; i<this->dim; i++)
+            vec.v[i]=this->v[i];
+        for(i=0;i<vec.dim;i++)
+            this->v[i]=vec.v[i];
         return *this;
     }
     else
@@ -48,30 +34,4 @@ coada & coada::pop()
         return *this;
     }
 
-}
-std::istream &operator>>(std::istream & in, coada &c)
-{
-    int i;
-    complex x;
-    if(c.vec.get_n()>0)
-    {
-        delete []c.vec.get_v();
-    }
-    in>>i;
-    c.vec.set_n(i);
-    c.vec.set_v(c.vec.get_n());
-    for(i=0; i<c.vec.get_n(); i++)
-    {
-        in>>x;
-        c.push(x);
-    }
-    return in;
-}
-std::ostream & operator <<(std::ostream & out,coada &c)
-{
-    int i;
-    if(c.vec.get_n()>0)
-        for(i=0; i<c.get_v().get_n(); i++)
-            out<<c.get_v().get_v()[i]<<' ';
-    return out;
 }

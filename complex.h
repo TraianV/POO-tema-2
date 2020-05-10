@@ -20,7 +20,7 @@ public:
     {
         return this->im;
     }
-    complex& operator =(complex &);
+    complex& operator =(complex const &);
     void set_re(float x)
     {
         this->re=x;

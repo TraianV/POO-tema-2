@@ -11,9 +11,6 @@ complex::complex(complex const &ob)
     this->re=ob.re;
     this->im=ob.im;
 }
-complex::complex()=default;
-complex::~complex()=default;
-complex& complex::operator=(complex const &ob)=default;
 std::istream & operator >> (std::istream &in, complex &r)
 {
     float x,y;
@@ -27,8 +24,10 @@ std::ostream & operator << (std::ostream &out,const complex &r)
 {
     if(r.re!=0)
         out<<r.re;
-    if(r.im==1)
+    if(r.im==1  &&  r.re!=0)
         out<<"+i";
+    else if(r.im==1 && r.re==0)
+        out<<"i";
     else if(r.im==-1)
         out<<"-i";
     else if(r.im>0)

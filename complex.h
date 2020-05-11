@@ -9,9 +9,9 @@ public:
     friend class stiva;
     friend class coada;
     complex(float,float );
-    complex(complex const&);
-    complex();
-    ~complex();
+    complex(complex const &);
+    complex(){re=0;im=0;};
+    ~complex()=default;
     float get_re()
     {
         return this->re;
@@ -20,7 +20,7 @@ public:
     {
         return this->im;
     }
-    complex& operator =(complex const &);
+    complex& operator =(complex const &)=default;
     void set_re(float x)
     {
         this->re=x;

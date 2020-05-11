@@ -1,11 +1,10 @@
 #include<iostream>
 #include<fstream>
-#include"complex.h"
+#include"complex"
 #include"vector.h"
 #include "stiva.h"
 #include "coada.h"
 #include<string.h>
-using namespace std;
 
 int main()
 {
@@ -15,14 +14,14 @@ int main()
     complex x;
     stiva a;
     coada b;
-    ifstream f("date.in");
-    cout<<"Scrieti in fisierul atasat comenzile:\n";
-    cout<<"push stiva a+bi=adaugare la stiva numarul complex a+bi(daca b=0 scrieti doar a, iar daca a este 0 scrieti doar bi)\n";
-    cout<<"push coada a+bi=la fel ca la stiva\n";
-    cout<<"pop stiva=elimina ultimul element din stiva\n";
-    cout<<"pop coada=eleimina primul element din coada\n";
-    cout<<"afis stiva=afisaza pe ecran stiva\n";
-    cout<<"afis coada=afisaza pe ecran coada\n";
+    std::ifstream f("date.in");
+    std::cout<<"Scrieti in fisierul atasat comenzile:\n";
+    std::cout<<"push stiva a+bi=adaugare la stiva numarul complex a+bi(daca b=0 scrieti doar a, iar daca a este 0 scrieti doar bi)\n";
+    std::cout<<"push coada a+bi=la fel ca la stiva\n";
+    std::cout<<"pop stiva=elimina ultimul element din stiva\n";
+    std::cout<<"pop coada=eleimina primul element din coada\n";
+    std::cout<<"afis stiva=afisaza pe ecran stiva\n";
+    std::cout<<"afis coada=afisaza pe ecran coada\n";
     while(f.get(s,50))
     {
         f.get();
@@ -35,9 +34,9 @@ int main()
         ok1=1;
         ok2=1;
         if(strstr(s,"afis stiva"))
-            cout<<a<<endl;
+            std::cout<<"Stiva: "<<a<<std::endl;
         else if(strstr(s,"afis coada"))
-            cout<<b<<endl;
+            std::cout<<"Coada: "<<b<<std::endl;
         else if(strstr(s,"pop stiva"))
             a.pop();
         else if( strstr(s,"pop coada"))
@@ -212,4 +211,3 @@ int main()
     f.close();
     return 0;
 }
-

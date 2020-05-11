@@ -10,9 +10,11 @@ stiva & stiva::push(complex const &x)
     for(i=0;i<this->get_n();i++)
         vec.set_v(i,this->get_v()[i]);
     vec.set_v(this->get_n(),x);
-    for(i=0;i<this->dim;i++)
+    delete [] this->v;
+    this->v=new complex[vec.dim];
+    for(i=0;i<vec.dim;i++)
         this->v[i]=vec.v[i];
-    this->dim++;
+    this->dim=vec.dim;
     return *this;
 }
 stiva & stiva::pop()
@@ -25,9 +27,11 @@ stiva & stiva::pop()
         vec.set_v(this->dim-1);
         for(i=0; i<this->dim-1; i++)
             vec.set_v(i,this->v[i]);
-        for(i=0; i<this->dim-1; i++)
+        delete [] this->v;
+        this->v=new complex[vec.dim];
+        for(i=0; i<vec.dim; i++)
             this->v[i]=vec.v[i];
-        this->dim--;
+        this->dim=vec.dim;
         return *this;
     }
     else
